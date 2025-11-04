@@ -14,7 +14,7 @@ As a student, I want to automatically convert my static class schedule (from a P
 
 #### 2.1.1 Schedule Upload and Parsing
 - **FR-001**: System shall provide a web-based chatbot interface for uploading schedule files
-- **FR-002**: System shall accept PDF and image file formats for schedule uploads
+- **FR-002**: System shall accept PDF, Excel, and common image formats for schedule uploads
 - **FR-003**: System shall extract schedule information including course names, dates, times, and locations from uploaded files
 - **FR-004**: System shall create corresponding events in a fixed Google Calendar using provided API key
 
@@ -30,6 +30,10 @@ As a student, I want to automatically convert my static class schedule (from a P
   - Keeping both conflicting events
   - Choosing only one event and removing the other
 - **FR-011**: System shall execute the user's chosen conflict resolution
+
+#### 2.1.4 Scheduling Constraints
+- **FR-027**: System shall only schedule events within the school year from September 2025 until end of June 2026
+- **FR-028**: System shall support recurring subjects that repeat weekly or bi-weekly as indicated in the schedule
 
 ### 2.2 Agent Architecture
 
@@ -62,15 +66,15 @@ As a student, I want to automatically convert my static class schedule (from a P
 
 ### 3.1 Technology Stack
 - **TR-001**: Python as the primary programming language
-- **TR-002**: Web framework suitable for creating a chatbot-style interface
+- **TR-002**: Simple web framework for creating a chatbot-style interface (no specific preference)
 - **TR-003**: OpenAI `/chat/completions` API for LLM functionalities
 - **TR-004**: Google Calendar API integration
-- **TR-005**: MCP (Model Context Protocol) for agent communication
+- **TR-005**: MCP (Model Context Protocol) for agent communication using JSON for data exchanges
 
 ### 3.2 Integration Requirements
 - **TR-006**: OpenAI API integration for document interpretation and natural language processing
 - **TR-007**: Google Calendar API integration using a fixed API key (no user authentication required)
-- **TR-008**: File upload handling for PDF and image formats
+- **TR-008**: File upload handling for PDF, Excel, and common image formats (PNG, JPG, JPEG, GIF)
 
 ### 3.3 User Interface Requirements
 - **TR-009**: Basic chatbot-style web interface
@@ -169,11 +173,11 @@ As a student, I want to automatically convert my static class schedule (from a P
 ### 9.1 Assumptions
 - Single user proof-of-concept (fixed Google Calendar)
 - OpenAI API access and reasonable usage costs
-- Google Calendar API key will be provided
+- Google Calendar API key and OpenAI API key will be provided
 - VSCode with Python and Git extensions available
 
 ### 9.2 Constraints
-- Only Google Calendar integration required
+- Only Google Calendar and OpenAI integration required
 - No user authentication or multi-user support
 - No persistent local data storage
 - Proof-of-concept scope (debugging-friendly error handling)
