@@ -1,0 +1,19 @@
+# Minimal Requirements for Sprint 1
+# Only the core dependencies needed to run the basic web application
+
+# Web Framework
+fastapi
+uvicorn[standard]
+
+# Data Validation
+pydantic
+pydantic-settings
+
+# Environment Variables
+python-dotenv
+
+# Logging
+structlog
+
+# Type Hints
+typing-extensions

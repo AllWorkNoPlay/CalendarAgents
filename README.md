@@ -49,7 +49,18 @@ This system provides a chatbot-style web interface for:
 
 3. **Install dependencies**
    ```bash
+   # Option 1: Smart installer (recommended for Python 3.13)
+   python3 install.py
+
+   # Option 2: Manual installation
+   # For Python 3.11-3.12:
    pip install -r requirements.txt
+
+   # For Python 3.13 (recommended):
+   pip install -r requirements-py313.txt
+
+   # For minimal setup (only Sprint 1):
+   pip install -r requirements-minimal.txt
    ```
 
 4. **Environment configuration**
@@ -67,6 +78,35 @@ This system provides a chatbot-style web interface for:
    - Open your browser to `http://localhost:8000`
    - Chat interface: `http://localhost:8000/chat`
    - API documentation: `http://localhost:8000/docs`
+
+### Troubleshooting Python 3.13
+
+If you encounter installation issues with Python 3.13:
+
+1. **Use Python 3.13 specific requirements:**
+   ```bash
+   pip install -r requirements-py313.txt
+   ```
+
+2. **Upgrade pip first:**
+   ```bash
+   pip install --upgrade pip
+   ```
+
+3. **Install in user space if permission issues:**
+   ```bash
+   pip install --user -r requirements-py313.txt
+   ```
+
+4. **Check for conflicting packages:**
+   ```bash
+   pip check
+   ```
+
+5. **Alternative: Use minimal requirements for testing:**
+   ```bash
+   pip install -r requirements-minimal.txt
+   ```
 
 ### Configuration
 

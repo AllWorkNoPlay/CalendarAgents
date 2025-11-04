@@ -1,0 +1,47 @@
+# Python 3.13 Compatible Requirements
+# Use this instead of requirements.txt if you have Python 3.13
+
+# Core Web Framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+
+# Data Validation
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# HTTP Client
+httpx>=0.27.0
+
+# File Processing
+PyPDF2>=3.0.1
+openpyxl>=3.1.2
+Pillow>=10.3.0
+pytesseract>=0.3.10
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-mock>=3.14.0
+
+# Development
+black>=24.0.0
+isort>=5.13.0
+flake8>=7.0.0
+
+# Logging
+structlog>=24.0.0
+
+# Date/Time Handling
+python-dateutil>=2.8.2
+
+# Type Hints
+typing-extensions>=4.12.0
+
+# Template Engine (for FastAPI)
+jinja2>=3.1.0
+
+# Additional CLI tools
+click>=8.1.0
