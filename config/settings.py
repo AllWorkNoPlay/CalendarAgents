@@ -2,7 +2,7 @@
 Application settings and configuration
 """
 import os
-from typing import Optional
+from typing import List, Optional
 
 from pydantic_settings import BaseSettings
 
@@ -40,6 +40,9 @@ class Settings(BaseSettings):
 
 # Create global settings instance
 settings = Settings()
+
+# Fixed application settings (not configurable via env)
+ALLOWED_FILE_TYPES: List[str] = ["pdf", "xlsx", "xls", "png", "jpg", "jpeg", "gif"]
 
 # Validate required settings for production
 if settings.environment == "production":
