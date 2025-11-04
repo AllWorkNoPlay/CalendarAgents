@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Scheduler - Chat Interface</title>
+    <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>🤖 Agentic Scheduler</h1>
+            <p>Your AI-powered calendar assistant</p>
+        </header>
+
+        <div class="file-upload-section">
+            <h3>📎 Upload Schedule</h3>
+            <div class="upload-controls">
+                <input type="file" id="fileInput" accept=".pdf,.xlsx,.xls,.png,.jpg,.jpeg,.gif">
+                <button id="uploadBtn" onclick="uploadFile()">Upload Schedule</button>
+            </div>
+            <p class="upload-info">Supported formats: PDF, Excel, PNG, JPG, JPEG, GIF</p>
+        </div>
+
+        <div class="chat-section">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message system-message">
+                    <div class="message-content">
+                        Hello! I'm your scheduling assistant. You can upload a schedule file above, or chat with me using natural language commands.
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                <button id="sendBtn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
