@@ -21,11 +21,23 @@ This system provides a chatbot-style web interface for:
 - ✅ Health check and monitoring endpoints
 - ✅ Unit tests for core components
 
-### 🔄 Sprint 2: File Parsing & Calendar Integration (NEXT)
-- File upload handling for PDF, Excel, images
-- Google Calendar API integration
-- Parsing Agent implementation
-- Calendar Agent implementation
+### ✅ Sprint 2: File Parsing & Calendar Integration (COMPLETED)
+- ✅ Parsing Agent implementation with PDF, Excel, and image support
+- ✅ Calendar Agent implementation with Google Calendar integration
+- ✅ File upload endpoint with agent orchestration
+- ✅ Basic OCR capabilities for images using Azure OpenAI Vision
+- ✅ File validation and error handling
+- ✅ Sample test files for different formats
+- ✅ Integration tests for file processing
+- ✅ School year constraint validation
+
+### 🔄 Sprint 3: Natural Language Processing (NEXT)
+- Implement OpenAI Chat Completions integration
+- Create Change Management Agent for NLP command processing
+- Add command parsing and validation logic
+- Implement basic NLP command recognition
+- Add command confirmation dialogs
+- Enhance chatbot interface for NLP interactions
 
 ## 🛠️ Setup Instructions
 
@@ -108,6 +120,24 @@ If you encounter installation issues with Python 3.13:
    pip install -r requirements-minimal.txt
    ```
 
+### File Upload Issues
+
+If you get "python-multipart" errors when uploading files:
+
+1. **Install the missing dependency:**
+   ```bash
+   pip install python-multipart
+   ```
+
+2. **The dependency is included in both:**
+   - `requirements.txt`
+   - `requirements-py313.txt`
+
+3. **Use the smart installer:**
+   ```bash
+   python3 install.py  # Automatically handles all dependencies
+   ```
+
 ### Configuration
 
 Edit `config/.env` with your API credentials:
@@ -179,7 +209,24 @@ pytest
 
 ### Run with Coverage
 ```bash
-pytest --cov=core --cov=agents --cov=api
+# Generate coverage report (unit tests only)
+pytest --cov=core --cov=agents --cov-report=term-missing
+
+# Generate HTML coverage report
+pytest --cov=core --cov=agents --cov-report=html
+open htmlcov/index.html
+```
+
+### Run Integration Tests
+```bash
+# Run all tests including integration
+pytest
+
+# Run only integration tests
+pytest -m integration
+
+# Run integration tests with full app
+pytest tests/integration/
 ```
 
 ## 📡 API Endpoints

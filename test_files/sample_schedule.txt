@@ -1,0 +1,23 @@
+SPRING 2025 CLASS SCHEDULE
+
+Mathematics 101 - Monday 9:00 AM - Room 101
+Advanced Calculus - Wednesday 10:00 AM - Room 101  
+Linear Algebra - Friday 2:00 PM - Room 105
+
+Physics Laboratory - Tuesday 1:00 PM - Lab 205
+Quantum Physics - Thursday 11:00 AM - Lecture Hall B
+Thermodynamics - Friday 9:00 AM - Lab 205
+
+Chemistry Lecture - Monday 11:00 AM - Auditorium A
+Organic Chemistry Lab - Wednesday 2:00 PM - Chemistry Lab 1
+Biochemistry Seminar - Thursday 3:00 PM - Room 310
+
+Computer Science Workshop - Tuesday 10:00 AM - Computer Lab 1
+Data Structures - Thursday 1:00 PM - Room 203
+Software Engineering - Friday 11:00 AM - Computer Lab 2
+
+Biology Field Study - Monday 8:00 AM - Greenhouse
+Molecular Biology Lab - Tuesday 2:00 PM - Biology Lab A
+Ecology Lecture - Wednesday 1:00 PM - Room 401
+
+Note: All classes meet weekly throughout the semester.

@@ -1,0 +1,9 @@
+# This is a placeholder file. 
+# In a real implementation, this would be an actual Excel file.
+# For testing, you can create an Excel file with columns:
+# Title, Date, Start Time, End Time, Location, Type
+#
+# Example data:
+# Mathematics 101, 2025-09-01, 09:00, 10:30, Room 101, class
+# Physics Lab, 2025-09-02, 14:00, 16:00, Lab 205, lab
+# Chemistry Lecture, 2025-09-03, 11:00, 12:00, Auditorium A, class

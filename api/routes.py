@@ -1,7 +1,7 @@
 """
 API routes for the Agentic Scheduler
 """
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from fastapi.responses import HTMLResponse
 
 from core.mcp import message_bus, send_message_to_agent
@@ -264,34 +264,82 @@ async def chat_endpoint(
 
 @router.post("/upload")
 async def upload_file(
-    file: bytes = None,
-    filename: str = None,
+    file: UploadFile = File(...),
     orchestrator: OrchestratorAgent = Depends(get_orchestrator)
 ):
-    """Handle file uploads"""
+    """Handle file uploads and process them"""
     try:
-        if not file or not filename:
+        if not file or not file.filename:
             raise HTTPException(status_code=400, detail="No file provided")
 
-        # For Sprint 1, just acknowledge the upload
-        # In Sprint 2, this will route to the Parsing Agent
-        response_message = f"File '{filename}' ({len(file)} bytes) uploaded successfully. File parsing will be implemented in Sprint 2."
+        # Read file content
+        file_content = await file.read()
+
+        if len(file_content) == 0:
+            raise HTTPException(status_code=400, detail="Empty file provided")
+
+        # Route to Parsing Agent
+        parsing_result = await orchestrator.coordinate_request(
+            "parsing_agent",
+            "parse_schedule",
+            {
+                "file_data": file_content,
+                "filename": file.filename
+            }
+        )
+
+        if parsing_result.get("status") != "success":
+            return APIResponse(
+                success=False,
+                message=f"File parsing failed: {parsing_result.get('message', 'Unknown error')}",
+                errors=["parsing_failed"]
+            )
+
+        events_data = parsing_result.get("events", [])
+
+        if not events_data:
+            return APIResponse(
+                success=True,
+                message=f"File '{filename}' processed successfully, but no events were found.",
+                data={
+                    "filename": filename,
+                    "file_size": len(file),
+                    "events_found": 0,
+                    "parsing_result": parsing_result
+                }
+            )
+
+        # Create events in calendar
+        calendar_result = await orchestrator.coordinate_request(
+            "calendar_agent",
+            "create_events",
+            {
+                "events": events_data
+            }
+        )
+
+        events_created = calendar_result.get("events_created", 0)
 
         return APIResponse(
             success=True,
-            message=response_message,
+            message=f"Successfully processed '{filename}' and created {events_created} calendar events!",
             data={
                 "filename": filename,
                 "file_size": len(file),
-                "status": "uploaded"
+                "events_found": len(events_data),
+                "events_created": events_created,
+                "parsing_result": parsing_result,
+                "calendar_result": calendar_result
             }
         )
 
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
         return APIResponse(
             success=False,
             message=f"Upload processing error: {str(e)}",
-            errors=[str(e)]
+            errors=[str(e), error_details]
         )
 
 

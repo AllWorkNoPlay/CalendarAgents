@@ -3,7 +3,7 @@ Data models for the Agentic Scheduler
 """
 from datetime import datetime
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -37,6 +37,24 @@ class CalendarEvent(BaseModel):
     class Config:
         json_encoders = {
             datetime: lambda v: v.isoformat()
+        }
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary with proper serialization"""
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "start_time": self.start_time.isoformat(),
+            "end_time": self.end_time.isoformat(),
+            "location": self.location,
+            "recurrence_rule": self.recurrence_rule,
+            "course_code": self.course_code,
+            "course_name": self.course_name,
+            "event_type": self.event_type.value,
+            "is_recurring": self.is_recurring,
+            "recurrence_pattern": self.recurrence_pattern,
+            "metadata": self.metadata
         }
 
 
